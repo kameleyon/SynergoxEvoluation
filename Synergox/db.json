@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1 (555) 123-4567",
+      "role": "Senior Developer",
+      "joinDate": "2023-01-15",
+      "lastActive": "2 hours ago",
+      "profileImage": null
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "React Component Architecture",
+      "content": "Discussion about best practices for structuring React components and managing state...",
+      "date": "2023-10-15",
+      "favorite": true,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "API Integration Methods",
+      "content": "Exploring different approaches to integrate RESTful APIs with frontend applications...",
+      "date": "2023-10-14",
+      "favorite": false,
+      "userId": 1
+    }
+  ],
+  "billing": {
+    "userId": 1,
+    "plan": "Pro Plan",
+    "renewalDate": "2024-10-31",
+    "capacity": "80%",
+    "paymentMethod": {
+      "type": "credit_card",
+      "last4": "4242",
+      "expiry": "12/24"
+    },
+    "invoices": [
+      {
+        "id": 1,
+        "date": "2023-10-01",
+        "amount": 19.00,
+        "status": "Paid"
+      },
+      {
+        "id": 2,
+        "date": "2023-09-01",
+        "amount": 19.00,
+        "status": "Paid"
+      }
+    ]
+  },
+  "announcements": [
+    {
+      "id": 1,
+      "date": "2023-10-15",
+      "time": "3:05 PM",
+      "type": "Announcement",
+      "title": "New Features Released",
+      "content": "We're excited to announce several new features that enhance your development experience.",
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "date": "2023-10-14",
+      "time": "2:30 PM",
+      "type": "Change Log",
+      "title": "System Updates",
+      "content": "Several system improvements have been implemented to enhance performance and reliability.",
+      "link": "#"
+    }
+  ]
+}
