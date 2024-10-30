@@ -1,243 +1,99 @@
-# 🚀 SynergoX - Next-Generation AI Development Platform
+# 🚀 Synergox
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![React](https://img.shields.io/badge/React-18.2.0-61dafb.svg)
-![MUI](https://img.shields.io/badge/MUI-5.14.14-007fff.svg)
+> A modern AI-powered chat interface with dynamic theming and responsive design.
 
-SynergoX is a cutting-edge AI-powered development platform that combines intelligent code analysis with seamless collaboration features. Built with modern web technologies, it offers developers a robust environment for efficient coding and team collaboration.
+## ✨ Key Features
 
-## 🌟 Features
+- 🌓 **Dynamic Theming** - Seamless dark/light mode switching with smooth transitions
+- 📱 **Responsive Design** - Mobile-first approach with adaptive sidebar
+- 🤖 **AI Integration** - Smart chat interface with context-aware interactions
+- 📊 **Activity Tracking** - Recent activities dashboard with search functionality
+- ⚡ **Quick Actions** - Customizable action buttons with shortcut support
+- 🔐 **Secure Auth** - Complete authentication system with Clerk
 
-### 💻 AI-Powered Development
-- Real-time code generation and analysis
-- Intelligent suggestions and optimizations
-- Context-aware responses using Claude 3 Sonnet
-- Code quality assessment
+## 🛠️ Built With
 
-### 🎨 Modern Interface
-- Dynamic code animation background
-- Elegant dark/light theme system
-- Responsive design across devices
-- Intuitive chat interface
-- Real-time preview and code panels
-
-### 🤝 Collaboration Tools
-- Project sharing and management
-- Team communication features
-- Code review capabilities
-- Activity tracking
-
-### 🛡️ Security & Authentication
-- Secure authentication via Clerk.js
-- Role-based access control
-- API key management
-- Data encryption
-
-## 🎯 Implementation Status
-
-### ✅ Completed Features
-
-#### Authentication
-- Full user authentication with Clerk.js
-- Protected routes and components
-- Session management
-- User profile integration
-
-#### User Interface
-- Interactive code animation background
-- Responsive dashboard layout
-- Dark/Light theme support
-- Real-time theme switching
-- Consistent styling across components
-
-#### Background Animation
-- Real-time code snippet display
-- Intelligent positioning system
-- Typing animation effect
-- Support for both code and conversation snippets
-- Non-intrusive overlay design
-- Automatic content rotation
-- Theme-aware color adaptation
-
-#### Chat System
-- Real-time chat interface
-- Message history storage
-- Code/Preview panels
-- Example queries
-
-### 🚧 In Progress
-
-#### AI Integration
-- Claude 3 Sonnet integration
-- Response type detection
-- Title generation
-- Context management
-
-#### Chat History
-- Local storage implementation
-- Favorite/Archive functionality
-- Search capabilities
-- Pagination
+- **React** - UI Framework
+- **Vite** - Build Tool
+- **Clerk** - Authentication
+- **Framer Motion** - Animations
+- **Lucide Icons** - UI Icons
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js >= 16.x
-- npm >= 8.x
-- Modern web browser
-- Clerk.com account for authentication
-- OpenRouter API key for AI features
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/synergox.git
-cd synergox
-```
-
-2. Install dependencies
+1. **Install Dependencies**
 ```bash
 npm install
 ```
 
-3. Configure environment variables
-Create a `.env` file in the root directory:
-```env
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-VITE_OPENROUTER_API_KEY=your_openrouter_api_key
+2. **Set Environment Variables**
+```bash
+# .env
+VITE_CLERK_PUBLISHABLE_KEY=your_key_here
 ```
 
-4. Start the development server
+3. **Start Development Server**
 ```bash
 npm run dev
 ```
 
-5. Start the mock API server
-```bash
-npm run mock-api
-```
-
-6. Open your browser and navigate to `http://localhost:5173`
-
-## 🛠️ Technology Stack
-
-### Frontend
-- React 18+
-- Material-UI (MUI)
-- Emotion for styled components
-- React Router for navigation
-- Clerk.com for authentication
-- JSON Server for mock API
-
-### AI Integration
-- OpenRouter API
-- Claude 3 Sonnet model
-- Context-aware processing
-- Response type detection
-
-### Development Tools
-- Vite for fast development
-- ESLint for code quality
-- Vitest for testing
-
 ## 📁 Project Structure
+
 ```
-synergox/
-├── src/
-│   ├── components/
-│   │   ├── Auth/
-│   │   │   ├── Auth.jsx
-│   │   │   └── ClerkAuth.jsx
-│   │   ├── Dashboard/
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── CodeAnimation.jsx
-│   │   │   └── BackgroundEffects.jsx
-│   │   ├── Layout/
-│   │   │   └── Layout.jsx
-│   │   ├── Settings/
-│   │   │   └── Settings.jsx
-│   │   ├── Billing/
-│   │   │   └── Billing.jsx
-│   │   ├── Projects/
-│   │   │   └── Projects.jsx
-│   │   ├── User/
-│   │   │   └── User.jsx
-│   │   └── Announcements/
-│   │       └── Announcements.jsx
-│   ├── services/
-│   │   ├── api.js
-│   │   ├── openRouter.js
-│   │   └── chatStorage.js
-│   ├── global.css
-│   ├── App.jsx
-│   └── main.jsx
-├── db.json
-├── index.html
-└── package.json
+src/
+├── components/     # React components
+├── fct/           # Reusable functions
+│   └── createProject.js  # Project management functions
+├── global.css     # Global styles
+├── App.jsx        # Main component
+└── main.jsx      # Entry point
 ```
 
-## 🔧 Development Guidelines
+## 💡 Usage Examples
 
-### Animation System
-The background animation system (`CodeAnimation.jsx`) follows these principles:
-- Non-blocking performance
-- Smart positioning to avoid overlaps
-- Theme-aware styling
-- Automatic content rotation
-- Typing animation effects
+### Creating a New Project
+```javascript
+import { createProject } from "../fct/createProject";
 
-### API Integration
-The project uses multiple API integrations:
-- Mock API (JSON Server) for development data
-- Clerk.js for authentication
-- OpenRouter for AI features
-- All API calls are centralized in respective service files
+const handleNewProject = () => {
+  const newProject = createProject("My New Project");
+  // Handle the new project
+};
+```
 
-### Component Structure
-- Each feature has its own directory in `components/`
-- Components follow atomic design principles
-- Shared components are placed in `components/common/`
+### Authentication with Clerk
+```jsx
+import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 
-### State Management
-- Local state with React hooks
-- Clerk.js for authentication state
-- Context API for theme management
-- Local storage for chat history
-
-### Styling
-- Material-UI components as base
-- Custom styling with Emotion
-- Global styles in `global.css`
-- Theme customization through MUI theme provider
-
-### Chat System
-- Real-time message handling
-- Local storage persistence
-- Response type detection
-- Title generation
-- History management
+const Dashboard = () => {
+  return (
+    <>
+      <SignedIn>
+        <div className="dashboard">
+          <h1>Welcome to Your Dashboard</h1>
+          {/* Dashboard content */}
+        </div>
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
+  );
+};
+```
 
 ## 🤝 Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+
+1. Fork the project
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📝 License
 
-## 👥 Team
-- Project Lead: [Your Name](https://github.com/yourusername)
-- Contributors: [List of Contributors](https://github.com/yourusername/synergox/graphs/contributors)
-
-## 📞 Support
-- Email: support@synergox.com
-- [Issue Tracker](https://github.com/yourusername/synergox/issues)
-- [Documentation](https://docs.synergox.com)
+MIT License
 
 ---
 
-Built with ❤️ by the SynergoX Team
+<p align="center">Made with ❤️ by Synergox Team</p>
