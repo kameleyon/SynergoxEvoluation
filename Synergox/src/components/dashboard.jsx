@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, Search, LogOut, Settings, HelpCircle, Bell, Sun, Moon } from 'lucide-react';
 import { UserButton, SignedIn, SignedOut, RedirectToSignIn, useUser } from '@clerk/clerk-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ref, onValue, query, orderByChild } from 'firebase/database';
+import { ref, onValue, query, orderByChild, set } from 'firebase/database';
 import { database } from '../firebaseConfig';
 import ActivityList from './Project/ProjectList';
 import Chat from './Chat/Chat';
@@ -10,6 +10,7 @@ import Project from './Project/Project';
 import MessageInput from './Chat/MessageInput';
 import { createChat, createMessage } from '../models/chat';
 import { createProject } from '../models/project';
+import axios from 'axios';
 
 export default function Dashboard() {
   // Core UI State
@@ -95,15 +96,6 @@ export default function Dashboard() {
 
   const handleSendMessage = async (messageText) => {
     try {
-      // Determine if this should be a chat or project based on content
-      const shouldBeProject = messageText.toLowerCase().includes('create project') || 
-                            messageText.toLowerCase().includes('new project');
-
-      if (shouldBeProject) {
-        handleNewProject();
-        return;
-      }
-
       // Create new chat if needed
       let currentChatId = activeItem?.type === 'chat' ? activeItem.id : null;
       
@@ -113,16 +105,29 @@ export default function Dashboard() {
         setActiveItem({ type: 'chat', id: newChat.id });
       }
 
+      // Add user message to chat
       await createMessage(currentChatId, 'User', messageText);
 
-      // Simulate AI response
-      setTimeout(async () => {
+      // Send message to Botpress
+      try {
+        const response = await axios.post('http://localhost:5000/api/botpress/message', {
+          message: messageText,
+          botName: 'my-bot',
+          userId: user?.id || 'anonymous'
+        });
+
+        // Add bot response to chat
+        if (response.data && response.data.responses && response.data.responses[0]) {
+          await createMessage(currentChatId, 'AI', response.data.responses[0].text);
+        }
+      } catch (error) {
+        console.error('Error communicating with Botpress:', error);
         await createMessage(
           currentChatId,
           'AI',
-          'I received your message: ' + messageText
+          'Sorry, I encountered an error processing your message.'
         );
-      }, 1000);
+      }
     } catch (error) {
       console.error('Error sending message:', error);
     }

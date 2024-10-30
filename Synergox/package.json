@@ -9,7 +9,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
-    "mock-api": "json-server --watch db.json --port 3001 --host 0.0.0.0"
+    "mock-api": "json-server --watch db.json --port 3001 --host 0.0.0.0",
+    "server": "node server.js"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.13.1",
@@ -25,7 +26,9 @@
     "@mui/material": "^5.14.14",
     "axios": "^1.7.7",
     "browser-storage": "^0.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^4.21.1",
     "firebase": "^11.0.1",
     "framer-motion": "^11.11.10",
     "json-server": "^0.17.4",
